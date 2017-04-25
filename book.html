@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #d7d0c9;
+			}
+			.bg{
+				width: 986px;
+				height: 577px;
+				position: absolute;
+				left: 110px;
+				top: -112px;
+				z-index: 6;
+				background: url(pic/paple2.png) no-repeat;
+			}
+			.pen{
+				width: 150px;
+				height: 210px;
+				background: url(pic/pen2.png) no-repeat;
+				position: absolute;
+				top: 100px;
+				left: 745px;
+				-webkit-transform: rotate(-15deg);
+			}
+			.ruler{
+				width: 291px;
+				height: 390px;
+				background: url(pic/setSquare.png) no-repeat;
+				position: absolute;
+				top: 248px;
+				right: -181px;
+				-webkit-transform: rotate(-108deg);
+			}
+			#box{
+				margin: 90px auto 0;
+				-webkit-transform-style:preserve-3d;
+				position: relative;
+				width: 1033px;
+				height: 540px;
+				padding: 7px;
+				background: url(pic/book.png) repeat-y;
+				z-index: 7;
+			}
+			.title{
+				width: 209px;
+				height: 107px;
+				position: absolute;
+				left: 380px;
+				top: -90px;
+				background: url(pic/titBg.png) no-repeat;
+			}
+			.title span{
+				width: 100%;
+				display: inline-block;
+				text-align: center;
+				margin-top: 46px;
+				color: white;
+				text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+			}			
+			.fl{
+				float: left;
+			}
+			.fr{
+				float: right;
+			}
+			.bg_left, .bg_right{
+				width: 480px;
+				height:540px;
+				border: 1px solid #816e62;
+				background: url(pic/bg.gif) repeat;
+			}
+			#content{
+				/*-webkit-transform-origin: 0 0;*/
+				-webkit-transform-style:preserve-3d;
+				-webkit-perspective: 2500px;
+				-webkit-perspective-origin: 50% 50%;
+				width: 900px;
+				height: 520px;
+				position: absolute;
+				left: 75px;
+				top: 17px;
+				z-index: 20;
+			}
+			#content div{
+				-webkit-transform-origin: -6px 0;
+				-webkit-transform-style:preserve-3d;
+				transition: .3s linear;
+				width: 444px;
+				height: 520px;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			span{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			#content .one{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#content .end{
+				background: url(pic/bookbg1.png) repeat-y;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			.page_left, .one span{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				display: block;
+				background: url(pic/bookbg.png) repeat-y;
+				backface-visibility: hidden;
+				-webkit-transform: translateZ(2px);
+			}
+			.page_right{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				display: block;
+				background: url(pic/bookbg1.png) repeat-y;
+				backface-visibility: hidden;
+				-webkit-transform: translateZ(-2px) rotateY(180deg);
+			}
+			#content .ring{
+				width: 47px;
+				height: 137px;
+				position: absolute;
+				left: 427px;
+				-webkit-transform: translateZ(10px);
+			}
+			#content .top{
+				top: 0;
+			}
+			#content .bottom{
+				top: 362px;
+			}
+			#content .ring div{
+				background: url(pic/ring.png) no-repeat;
+				width: 47px;
+				height: 20px;
+				position: absolute;
+				left: 0;
+			}
+			#content .top div:nth-of-type(1), #content .bottom div:nth-of-type(1){
+				top: 34px;
+			}
+			#content .top div:nth-of-type(2), #content .bottom div:nth-of-type(2){
+				top: 72px;
+			}
+			#content .top div:nth-of-type(3), #content .bottom div:nth-of-type(3){
+				top: 111px;
+			}
+			.line_one{
+				width: 12px;
+				height: 520px;
+				background: #e2dcd8;
+				box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				left: 63px;
+			}
+			.line_two{
+				width: 8px;
+				height: 520px;
+				background: #e8e4e2;
+				box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				left: 67px;
+			}
+			.line_three{
+				width: 4px;
+				height: 520px;
+				background: #edeae9;
+				box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				left: 71px;
+			}
+			.line_four{
+				width: 12px;
+				height: 520px;
+				background: #e2dce8d;
+				box-shadow:0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				right: 60px;
+			}
+			.line_five{
+				width: 8px;
+				height: 520px;
+				background: #e8e4e2;
+				box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				right: 64px;
+			}
+			.line_six{
+				width: 4px;
+				height: 520px;
+				background: #edeae9;
+				box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+				position: absolute;
+				top: 17px;
+				right: 67px;
+			}
+			.backtop{
+				width: 83px;
+				height:99px;
+				background: url(pic/backTop.png) no-repeat;
+				position: absolute;
+				bottom: 4%;
+				right: 1%;
+				-webkit-transform: rotate(-10deg);
+			}
+			.backtop:hover{
+				-webkit-transform: rotate(0);
+			}
+			.wind{
+				width: 160px;
+				height: 340px;
+				background: url(pic/wind.png) no-repeat;
+				position: absolute;
+				bottom: 28%;
+				right: 3%;
+				-webkit-transform: rotate(15deg);
+			}
+			nav{
+				width: 120px;
+				position: fixed;
+				top: 30%;
+				left: 0;
+			}
+			.nav{
+				margin-left: -60px;
+				width: 130px;
+				height: 43px;
+				margin-top: -5px;
+				color: white;
+				text-indent: 50px;
+				font-size: 12px;
+				text-align: right;
+				padding-right: 20px;
+				opacity: 0.3;
+				line-height: 35px;
+				-webkit-transition: 0.5s;
+				cursor: pointer;
+				-webkit-user-select: none;
+			}
+			.nav:nth-of-type(1){
+				background: url(pic/noteblack.png) no-repeat right;
+			}
+			.nav:nth-of-type(2){
+				background: url(pic/noteprimary.png) no-repeat right;
+			}
+			.nav:nth-of-type(3){
+				background: url(pic/noteblue.png) no-repeat right;
+			}
+			.nav:nth-of-type(4){
+				background: url(pic/noteblack.png) no-repeat right;
+			}
+			.nav:nth-of-type(5){
+				background: url(pic/notepink.png) no-repeat right;
+			}
+			.nav:hover{
+				margin-left: -34px;
+				opacity: 1;
+			}
+			.active{
+				margin-left: -34px;
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="pen"></div>
+			<div class="ruler"></div>
+		</div>
+		<nav>
+			<div class="nav">信息</div>
+			<div class="nav">信息</div>
+			<div class="nav active">信息</div>
+			<div class="nav">信息</div>
+			<div class="nav">信息</div>
+		</nav>
+		<div id="box">
+			<div class="title">
+				<span>作品集</span>
+			</div>
+			<div class="bg_left fl"></div>
+			<div class="bg_right fr"></div>
+			<div id="content">
+				<div class="one" style="z-index: 0;">
+					<span>
+						<span>11111111111111111111111111</span>
+					</span>
+				</div>
+				<div class="two page" style="z-index: 5;">
+					<span class="page_left">
+						<span>2222222222222222222222222</span>
+					</span>
+					<span class="page_right">
+						<span>333333333333333333333333333</span>
+					</span>
+				</div>
+				<div class="three page" style="z-index: 4;">
+					<span class="page_left">4444444444444444444444444444444444</span>
+					<span class="page_right">555555555555555555555555555</span>
+				</div>
+				<div class="four page" style="z-index: 3;">
+					<span class="page_left">6666666666666666666666666666666</span>
+					<span class="page_right">77777777777777777777777777777777</span>
+				</div>
+				<div class="five page" style="z-index: 2;">
+					<span class="page_left">88888888888888888888888888888888</span>
+					<span class="page_right">9999999999999999999999999999999</span>
+				</div>
+				<div class="six page" style="z-index: 1;">
+					<span class="page_left">10000000000000000000000000000000</span>
+					<span class="page_right">1111111111111111111111111111111</span>
+				</div>
+				<div class="end" style="z-index: 0;">
+					<span>最后一页</span>
+				</div>
+				<div class="top ring">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="bottom ring">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div class="line_one"></div>
+			<div class="line_two"></div>
+			<div class="line_three"></div>
+			<div class="line_four"></div>
+			<div class="line_five"></div>
+			<div class="line_six"></div>
+		</div>
+		<div class="backtop"></div>
+		<div class="wind"></div>
+		<script type="text/javascript" src="js/jquery-2.0.3.js" ></script>
+		<script type="text/javascript">
+			var Left = $('.page_left');
+			var Right = $('.page_right');
+			var num = $('.page').size();
+			var n = 0;
+			var onOff = null;
+			Left.click(function(){
+				onOff = true;
+				n = $(this).parents().eq(0).index();
+				this.parentNode.style.webkitTransform = 'rotateY(-180deg)';
+			});
+			Right.click(function(ev){
+				onOff = false;
+				n = $(this).parents().eq(0).index();
+				this.parentNode.style.webkitTransform = 'rotateY(0)';
+			});
+			$('.page').on('webkitTransitionEnd',function(){
+				var page = $('.page');
+				if (onOff == true) {
+					page.each(function(index,ele){
+						if ($(this).index() <= n) {
+							this.style.zIndex = 2*$(this).index();
+						}else{
+							this.style.zIndex = 2*(num - $(this).index());
+						}
+					})
+				} else {
+					page.each(function(index,ele){
+						if ($(this).index() < n) {
+							this.style.zIndex = 2*$(this).index();
+						}else{
+							this.style.zIndex = 2*(num - $(this).index());
+						}
+					})
+				}
+				
+			});
+			$('.nav').click(function(){
+				$(this).addClass('active').siblings().removeClass('active');
+			})
+		</script>
+	</body>
+</html>
